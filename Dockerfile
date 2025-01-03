@@ -1,5 +1,6 @@
 # Usar a imagem oficial com suporte a Forge
-FROM itzg/minecraft-server:latest
+FROM itzg/minecraft-server:1.16.5-forge
+
 
 # Definir variáveis de ambiente para configuração do servidor
 ENV MINECRAFT_EULA=true
