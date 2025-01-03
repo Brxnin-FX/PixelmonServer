@@ -1,23 +1,16 @@
-# Usar a imagem oficial com suporte a Forge
-FROM itzg/minecraft-server:1.16.5-forge
-
+# Usar a imagem oficial do Minecraft (a mais recente)
+FROM itzg/minecraft-server:latest
 
 # Definir variáveis de ambiente para configuração do servidor
 ENV MINECRAFT_EULA=true
 ENV MINECRAFT_SERVER_PORT=25565
-ENV MINECRAFT_LEVEL_NAME=world
+ENV MINECRAFT_VERSION=1.16.5
+ENV MINECRAFT_FORGE=true
 ENV MINECRAFT_MAX_PLAYERS=20
 ENV MINECRAFT_MOTD="A Minecraft Server com Forge"
 ENV MINECRAFT_WHITELIST=false
 ENV MINECRAFT_SPAWN_PROTECTION=16
 ENV MINECRAFT_DIFFICULTY=2
-ENV MC_VERSION=1.16.5
-ENV FORGE_VERSION=36.2.34
-
-# Baixar e instalar o Forge 1.16.5
-RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${MC_VERSION}-${FORGE_VERSION}/forge-${MC_VERSION}-${FORGE_VERSION}-installer.jar -O /tmp/forge-installer.jar && \
-    java -jar /tmp/forge-installer.jar --installServer && \
-    rm /tmp/forge-installer.jar
 
 # Copiar os mods para o diretório de mods do servidor
 COPY ./mods /data/mods
