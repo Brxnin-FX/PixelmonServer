@@ -16,7 +16,7 @@ sleep 20
 
 # Adicionar um nome na whitelist automaticamente
 # Comando para adicionar "bruno" na whitelist
-echo "whitelist add bruno" | nc -w 1 localhost 25565
+echo "whitelist add Brxnin-FX" | nc -w 1 localhost 25565
 
 # Você pode adicionar outros comandos aqui, como:
 # echo "gamerule keepInventory true" | nc -w 1 localhost 25565
