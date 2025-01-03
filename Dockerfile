@@ -1,4 +1,4 @@
-# Usando a imagem oficial do Minecraft com suporte para mods (Forge)
+# Usar a imagem oficial com suporte a Forge
 FROM itzg/minecraft-server:latest
 
 # Definir variáveis de ambiente para configuração do servidor
@@ -11,15 +11,24 @@ ENV MINECRAFT_WHITELIST=false
 ENV MINECRAFT_SPAWN_PROTECTION=16
 ENV MINECRAFT_DIFFICULTY=2
 
+# Instalar o Forge 1.16.5
+ENV FORGE_VERSION=36.2.34
+ENV MC_VERSION=1.16.5
+
+# Baixar e instalar o Forge
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${MC_VERSION}-${FORGE_VERSION}/forge-${MC_VERSION}-${FORGE_VERSION}-installer.jar -O /tmp/forge-installer.jar && \
+    java -jar /tmp/forge-installer.jar --installServer && \
+    rm /tmp/forge-installer.jar
+
 # Copiar os mods para o diretório de mods do servidor
 COPY ./mods /data/mods
 
-# Copiar o script start.sh para a pasta correta dentro do contêiner
-COPY start.sh /data/start.sh
-RUN chmod +x /data/start.sh
-
 # Expor a porta do servidor
 EXPOSE 25565
+
+# Criar o script de início
+COPY start.sh /data/start.sh
+RUN chmod +x /data/start.sh
 
 # Definir o comando de execução
 CMD ["/data/start.sh"]
