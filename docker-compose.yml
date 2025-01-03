@@ -9,13 +9,12 @@ services:
       - MINECRAFT_SERVER_PORT=25565
       - MINECRAFT_LEVEL_NAME=world
       - MINECRAFT_MAX_PLAYERS=20
-      - MINECRAFT_MOTD="Minecraft Server com Forge"
-      - MINECRAFT_WHITELIST=false
+      - MINECRAFT_MOTD="A Minecraft Server"
       - MINECRAFT_SPAWN_PROTECTION=16
       - MINECRAFT_DIFFICULTY=2
     volumes:
-      - ./mods:/data/mods
       - ./server-data:/data
+      - ./mods:/data/mods
     ports:
       - "25565:25565"
     restart: unless-stopped
