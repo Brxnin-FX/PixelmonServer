@@ -1,21 +1,25 @@
-# Usando a imagem base oficial do Minecraft com suporte a mods
+# Usando a imagem oficial do Minecraft com suporte para mods (Forge)
 FROM itzg/minecraft-server:latest
 
-# Defina a versão do Minecraft e do Forge
-ENV VERSION=1.16.5
-ENV FORGE=36.2.0
+# Definir variáveis de ambiente para configuração do servidor
+ENV MINECRAFT_EULA=true
+ENV MINECRAFT_SERVER_PORT=25565
+ENV MINECRAFT_LEVEL_NAME=world
+ENV MINECRAFT_MAX_PLAYERS=20
+ENV MINECRAFT_MOTD="A Minecraft Server"
+ENV MINECRAFT_WHITELIST=false
+ENV MINECRAFT_SPAWN_PROTECTION=16
+ENV MINECRAFT_DIFFICULTY=2
 
-# Aceite o EULA (necessário para rodar o servidor)
-COPY eula.txt /data/eula.txt
-
-# Copie os mods para o diretório de mods do Minecraft no servidor
+# Copiar os mods para o diretório de mods do servidor
 COPY ./mods /data/mods
 
-# Exponha a porta do Minecraft para o mundo externo
+# Iniciar o servidor com o script start.sh
+COPY start.sh /data/start.sh
+RUN chmod +x /data/start.sh
+
+# Expor a porta do servidor
 EXPOSE 25565
 
-# Defina a variável de ambiente EULA como verdadeira
-ENV EULA=TRUE
-
-# Inicie o servidor
-CMD ["start.sh"]
+# Definir o comando de execução
+CMD ["/data/start.sh"]

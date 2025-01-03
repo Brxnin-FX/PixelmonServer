@@ -1,13 +1,21 @@
-version: '3'
+version: '3.8'
 
 services:
-  minecraft-server:
+  minecraft:
     build: .
-    ports:
-      - "25565:25565"
+    container_name: minecraft-server
+    environment:
+      - MINECRAFT_EULA=true
+      - MINECRAFT_SERVER_PORT=25565
+      - MINECRAFT_LEVEL_NAME=world
+      - MINECRAFT_MAX_PLAYERS=20
+      - MINECRAFT_MOTD="A Minecraft Server"
+      - MINECRAFT_WHITELIST=false
+      - MINECRAFT_SPAWN_PROTECTION=16
+      - MINECRAFT_DIFFICULTY=2
     volumes:
       - ./mods:/data/mods
-    environment:
-      EULA: "TRUE"
-      MEMORY: "2G"
-    restart: always
+      - ./server-data:/data
+    ports:
+      - "25565:25565"
+    restart: unless-stopped
