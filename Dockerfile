@@ -14,7 +14,7 @@ ENV MINECRAFT_DIFFICULTY=2
 # Copiar os mods para o diretório de mods do servidor
 COPY ./mods /data/mods
 
-# Iniciar o servidor com o script start.sh
+# Copiar o script start.sh para a pasta correta dentro do contêiner
 COPY start.sh /data/start.sh
 RUN chmod +x /data/start.sh
 
