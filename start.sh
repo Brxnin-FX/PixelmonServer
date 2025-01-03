@@ -1,12 +1,7 @@
 #!/bin/bash
 
 # Aceitar o EULA automaticamente
-if [ "$EULA" = "true" ]; then
-  echo "eula=true" > /data/eula.txt
-else
-  echo "Você precisa aceitar o EULA para iniciar o servidor."
-  exit 1
-fi
+echo "eula=true" > /data/eula.txt
 
-# Iniciar o servidor Minecraft com Forge
-java -Xmx1024M -Xms1024M -jar /data/server.jar nogui &
+# Iniciar o servidor com suporte a mods
+exec java -Xmx4G -Xms2G -jar /data/server.jar nogui

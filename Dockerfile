@@ -1,24 +1,27 @@
-# Usando a imagem oficial do Minecraft com suporte para mods (Forge)
+# Usando a imagem oficial do Minecraft com suporte para Forge
 FROM itzg/minecraft-server:latest
 
-# Definir variáveis de ambiente para configuração do servidor
-ENV MINECRAFT_EULA=true
-ENV MINECRAFT_SERVER_PORT=25565
-ENV MINECRAFT_LEVEL_NAME=world
-ENV MINECRAFT_MAX_PLAYERS=20
-ENV MINECRAFT_MOTD="A Minecraft Server"
-ENV MINECRAFT_SPAWN_PROTECTION=16
-ENV MINECRAFT_DIFFICULTY=2
+# Definir variáveis de ambiente padrão para o servidor
+ENV EULA=true
+ENV SERVER_PORT=25565
+ENV LEVEL_NAME=world
+ENV MAX_PLAYERS=20
+ENV MOTD="A Minecraft Server"
+ENV SPAWN_PROTECTION=16
+ENV DIFFICULTY=2
 
-# Copiar os mods para o diretório de mods do servidor
+# Copiar os arquivos de mods para o diretório correto
 COPY ./mods /data/mods
 
-# Iniciar o servidor com o script start.sh
+# Copiar o arquivo JAR do servidor para o contêiner
+COPY ./server.jar /data/server.jar
+
+# Copiar o script de inicialização
 COPY start.sh /data/start.sh
 RUN chmod +x /data/start.sh
 
 # Expor a porta do servidor
 EXPOSE 25565
 
-# Definir o comando de execução
+# Definir o comando padrão
 CMD ["/data/start.sh"]
