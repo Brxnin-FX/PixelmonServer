@@ -8,5 +8,5 @@ else
   exit 1
 fi
 
-# Iniciar o servidor Minecraft com Forge
-exec java -Xmx1024M -Xms1024M -jar forge-1.16.5-${FORGE_VERSION}.jar nogui
+# Iniciar o servidor Minecraft com Forge 1.16.5
+exec java -Xmx1024M -Xms1024M -jar forge-${MC_VERSION}-${FORGE_VERSION}.jar nogui

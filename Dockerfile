@@ -6,16 +6,14 @@ ENV MINECRAFT_EULA=true
 ENV MINECRAFT_SERVER_PORT=25565
 ENV MINECRAFT_LEVEL_NAME=world
 ENV MINECRAFT_MAX_PLAYERS=20
-ENV MINECRAFT_MOTD="A Minecraft Server"
+ENV MINECRAFT_MOTD="A Minecraft Server com Forge"
 ENV MINECRAFT_WHITELIST=false
 ENV MINECRAFT_SPAWN_PROTECTION=16
 ENV MINECRAFT_DIFFICULTY=2
-
-# Instalar o Forge 1.16.5
-ENV FORGE_VERSION=36.2.34
 ENV MC_VERSION=1.16.5
+ENV FORGE_VERSION=36.2.34
 
-# Baixar e instalar o Forge
+# Baixar e instalar o Forge 1.16.5
 RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${MC_VERSION}-${FORGE_VERSION}/forge-${MC_VERSION}-${FORGE_VERSION}-installer.jar -O /tmp/forge-installer.jar && \
     java -jar /tmp/forge-installer.jar --installServer && \
     rm /tmp/forge-installer.jar
